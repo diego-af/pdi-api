@@ -4,6 +4,7 @@ import { ErrorBoundary } from '../../ErrorClass/ErrorBoundary';
 
 interface Payload {
   sub: string;
+  id: string;
 }
 
 export function IsAuthennticated(req: Request, res: Response, next: NextFunction) {
@@ -19,9 +20,9 @@ export function IsAuthennticated(req: Request, res: Response, next: NextFunction
     if (!process.env.JWT_SECRET) {
       throw new ErrorBoundary('Erro no valor do JWT na env');
     }
-    const { sub } = verify(token, process.env.JWT_SECRET) as Payload;
+    const tokenId = verify(token, process.env.JWT_SECRET) as Payload;
 
-    (req as any).user_id = sub;
+    (req as any).user_id = tokenId.id;
 
     return next();
   } catch (err) {
