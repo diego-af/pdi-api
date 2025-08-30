@@ -21,13 +21,7 @@ RUN npm ci && npm cache clean --force
 # Copiar código fonte
 COPY . .
 
-# Criar usuário não-root para segurança
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001
-
-# Ajustar permissões
-RUN chown -R nodejs:nodejs /app
-USER nodejs
+# O estágio de desenvolvimento é executado como root para evitar problemas de permissão de volume.
 
 # Expor porta
 EXPOSE 3000
@@ -37,7 +31,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:3000/health || exit 1
 
 # Comando para desenvolvimento (com hot reload)
-CMD ["npm", "run", "dev"]
+CMD ["sh", "-c", "npm install && npm run dev"]
 
 # Production stage
 FROM base AS production

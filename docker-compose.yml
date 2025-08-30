@@ -24,6 +24,9 @@ services:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
       - WATCHPACK_POLLING=true # Para melhor hot reload
+      - JWT_SECRET={JWT_SECRET}
+      - JWT_EXPIRES_IN=1D
+
     networks:
       - backend_net
     stdin_open: true
