@@ -7,7 +7,9 @@ export class BcryptHandler {
     return hashedPassword;
   }
 
-  async comparePassword(password: string, passwordHash: string): Promise<string> {
-    return 'deu';
+  async comparePassword(password: string, passwordHash: string): Promise<boolean> {
+    const isMatch = await bcrypt.compare(password, passwordHash);
+
+    return isMatch;
   }
 }

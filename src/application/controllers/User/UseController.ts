@@ -20,6 +20,29 @@ class UseController {
       next();
     }
   }
+
+  async updateUserController(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const userData = req.body;
+      const updatedUser = await this.userService.updateUser(id, userData);
+      return res.status(200).json(updatedUser);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteUserController(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      await this.userService.deleteUser(id);
+      return res.status(204).json({
+        message: 'Usuário deletado com sucesso',
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export { UseController };

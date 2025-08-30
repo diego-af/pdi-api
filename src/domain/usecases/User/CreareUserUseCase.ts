@@ -18,4 +18,15 @@ export class CreateUserUseCase {
 
     return user;
   }
+
+  async updateUser(id: string, user: Partial<IUser>) {
+    const updatedUser = await this.userRepository.updateUser(id, user);
+    return updatedUser;
+  }
+
+  async deleteUser(id: string) {
+    const userdeleted = await this.userRepository.deleteUser(id);
+
+    return userdeleted;
+  }
 }
