@@ -6,7 +6,7 @@ export interface IUser {
 
 export type IUserLogin = Omit<IUser, 'name'>;
 export interface IUserResponse {
-  id: number;
+  id: string | number | undefined;
   name: string;
   email: string;
   createdAt: Date;

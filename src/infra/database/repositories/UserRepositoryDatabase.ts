@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
 import { IUserRepository } from '../../../domain/repositories/User/UserRepository';
-import { User } from '../entities/User.entity';
+import { User } from '../models/User.model';
 import { AppDataSource } from '../../../datasource';
 import { IUserResponse } from '../../../types/User.types';
 
@@ -33,7 +33,7 @@ export class UserRepositoryDatabase implements IUserRepository {
   }
 
   async updateUser(id: string, user: Partial<IUserResponse>) {
-    await this.useRepository.update(id, user);
+    await this.useRepository.update(id, { name: user.name, email: user.email });
     const user_id = id as unknown as number;
     const updatedUser = await this.useRepository.findOneBy({ id: user_id });
     return updatedUser;

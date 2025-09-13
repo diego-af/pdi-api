@@ -3,14 +3,14 @@ import {
   CreateDateColumn,
   Entity,
   OneToMany,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Task } from './Task.entity';
+import { Task } from './Task.model';
 
 @Entity('users')
 export class User {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn('uuid')
   id: number;
 
   @Column()
@@ -22,7 +22,7 @@ export class User {
   @Column()
   password: string;
 
-  @CreateDateColumn() // ⏰ TypeORM cuida das datas automaticamente
+  @CreateDateColumn()
   createdAt!: Date;
 
   @UpdateDateColumn()

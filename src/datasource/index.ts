@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
-import { User } from '../infra/database/entities/User.entity';
-import { Task } from '../infra/database/entities/Task.entity';
+import { User } from '../infra/database/models/User.model';
+import { Task } from '../infra/database/models/Task.model';
 
 dotenv.config();
 

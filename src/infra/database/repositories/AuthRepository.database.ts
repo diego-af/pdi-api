@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
 import { AuthReṕository } from '../../../domain/repositories/Auth/Auth';
-import { User } from '../entities/User.entity';
+import { User } from '../models/User.model';
 import { AppDataSource } from '../../../datasource';
 
 export class AuthRepositoryDatabase implements AuthReṕository {
