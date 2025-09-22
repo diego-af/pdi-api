@@ -5,7 +5,7 @@ import { NextFunction, Request, Response } from 'express';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  async hadnleLogin(req: Request, res: Response, next: NextFunction) {
+  async handleLogin(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, password } = req.body;
 

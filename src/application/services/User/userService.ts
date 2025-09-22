@@ -12,7 +12,7 @@ export class UserService {
       throw new ErrorBoundary('Usuário já existe com este email', 400, false);
     }
 
-    const userPassword = await this.bcrypt.encryptpassword(user.password, 10);
+    const userPassword = await this.bcrypt.encryptpassword(user.password, 3);
     const userCreated = await this.useCaseUser.createUser({
       ...user,
       password: userPassword,
@@ -29,7 +29,7 @@ export class UserService {
     return users;
   }
 
-  async updateUser(id: string, user: Partial<IUser>) {
+  async updateUser(id: string, user: IUser) {
     if (user.password) {
       user.password = await this.bcrypt.encryptpassword(user.password, 10);
     }

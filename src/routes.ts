@@ -1,28 +1,35 @@
 import { NextFunction, Router } from 'express';
-import { userController } from './application/controllers/User';
+
 import { Request, Response } from 'express';
-import { authController } from './application/controllers/Auth';
+import {
+  createUserController,
+  deleteuserController,
+  getAllUserCOntroller,
+  updatedUserController,
+} from './application/controllers/User';
+
 import { IsAuthennticated } from './application/middlewares/AuthMiddleware';
+import { authController } from './application/controllers/Auth';
 const router = Router();
 
 router.post('/users', (req: Request, res: Response, next: NextFunction) => {
-  userController.handle(req, res, next);
+  createUserController.execute(req, res, next);
 });
 
 router.get('/users', IsAuthennticated, (req: Request, res: Response, next: NextFunction) => {
-  userController.getAllUsersController(req, res, next);
+  getAllUserCOntroller.execute(req, res, next);
 });
 
 router.put('/users/:id', (req: Request, res: Response, next: NextFunction) => {
-  userController.updateUserController(req, res, next);
+  updatedUserController.execute(req, res, next);
 });
 
 router.delete('/users/:id', (req: Request, res: Response, next: NextFunction) => {
-  userController.deleteUserController(req, res, next);
+  deleteuserController.execute(req, res, next);
 });
 
 router.post('/login', (req: Request, res: Response, next: NextFunction) => {
-  authController.hadnleLogin(req, res, next);
+  authController.handleLogin(req, res, next);
 });
 
 export { router };

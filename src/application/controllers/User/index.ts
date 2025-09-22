@@ -2,12 +2,19 @@ import { CreateUserUseCase } from '../../../domain/usecases/User/CreareUserUseCa
 import { UserRepositoryDatabase } from '../../../infra/database/repositories/UserRepositoryDatabase';
 import { UserService } from '../../services/User/userService';
 import { BcryptHandler } from '../../Utils/EncryptPassWord';
-import { UseController } from './UseController';
+import { CreateUser } from './CreateUser';
+import { DeleteUserController } from './DeleteUserController';
+import { GetAllUser } from './GetAllUser';
+import { UpdateUser } from './UpdateUser';
 
 const userRepository = new UserRepositoryDatabase();
 const useCaseUser = new CreateUserUseCase(userRepository);
 const bcryptHandler = new BcryptHandler();
 const userService = new UserService(useCaseUser, bcryptHandler);
-const userController = new UseController(userService);
 
-export { userController };
+const createUserController = new CreateUser(userService);
+const getAllUserCOntroller = new GetAllUser(userService);
+const updatedUserController = new UpdateUser(userService);
+const deleteuserController = new DeleteUserController(userService);
+
+export { createUserController, getAllUserCOntroller, updatedUserController, deleteuserController };

@@ -24,10 +24,19 @@ export class User {
     if (password.length < 6) {
       throw new ErrorBoundary('Senha curta demais');
     }
+
+    if (!password.match(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).+$/)) {
+      throw new ErrorBoundary(
+        'Senha deve conter ao menos uma letra maiúscula, um numero e um caractere especial',
+      );
+    }
     return true;
   }
 
   validateName(name: string): boolean {
+    if (!name) {
+      throw new ErrorBoundary('Nome inválido');
+    }
     if (name.length < 3) {
       throw new ErrorBoundary('Nome curto demais');
     }
@@ -40,6 +49,10 @@ export class User {
 
   validateEmail(email: string): boolean {
     const re = /\S+@\S+\.\S+/;
+
+    if (!email) {
+      throw new ErrorBoundary('Email obrigatório');
+    }
     if (!re.test(email)) {
       throw new ErrorBoundary('Email inválido');
     }
