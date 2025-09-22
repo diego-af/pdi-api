@@ -11,7 +11,7 @@ import { Task } from './Task.model';
 @Entity('users')
 export class User {
   @PrimaryColumn('uuid')
-  id: number;
+  id: number; ///@todo
 
   @Column()
   name: string;

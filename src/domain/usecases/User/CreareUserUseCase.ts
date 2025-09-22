@@ -22,8 +22,9 @@ export class CreateUserUseCase {
     return user;
   }
 
-  async updateUser(id: string, user: Partial<IUser>) {
-    const updatedUser = await this.userRepository.updateUser(id, user);
+  async updateUser(id: string, user: IUser) {
+    const userUpdated = new User(user.name, user.email, user.password);
+    const updatedUser = await this.userRepository.updateUser(id, userUpdated);
     return updatedUser;
   }
 
