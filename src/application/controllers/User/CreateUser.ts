@@ -1,11 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
-
-import { UserService } from '../../services/User/userService';
 import { IUser } from '../../../types/User.types';
 import { UserAbstractController } from './UserAbstractController';
+import { UserCreateUserService } from '../../services/User/CreateUserService';
 
 export class CreateUser extends UserAbstractController {
-  constructor(private userService: UserService) {
+  constructor(private userServiceCreate: UserCreateUserService) {
     super();
   }
 
@@ -13,7 +12,7 @@ export class CreateUser extends UserAbstractController {
     try {
       const userData: Omit<IUser, 'id'> = req.body;
 
-      const user = await this.userService.createUser(userData);
+      const user = await this.userServiceCreate.handleUSerService(userData);
       return res.status(201).json(user);
     } catch (error) {
       next(error);

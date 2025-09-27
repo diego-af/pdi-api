@@ -10,7 +10,7 @@ export class Task {
   constructor(title: string, description: string, completed: boolean = false, id?: number) {
     this.id = id || (randomUUID() as unknown as number);
 
-    this.valiadateTitle(title);
+    this.validateTitle(title);
     this.title = title;
 
     this.validateDescription(description);
@@ -44,7 +44,7 @@ export class Task {
   }
 
   setTitle(title: string): void {
-    if (!this.valiadateTitle(title)) {
+    if (!this.validateTitle(title)) {
       throw new ErrorBoundary('Título inválido');
     }
 
@@ -59,7 +59,7 @@ export class Task {
     return true;
   }
 
-  valiadateTitle(title: string): boolean {
+  validateTitle(title: string): boolean {
     if (!title) throw new ErrorBoundary('Título inválido');
 
     if (title.length < 3) throw new ErrorBoundary('Título curto demais');

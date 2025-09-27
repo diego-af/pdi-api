@@ -1,10 +1,10 @@
-import { UserService } from '../../services/User/userService';
+import { UpdateUserService } from '../../services/User/UpdateUserService';
 import { UserAbstractController } from './UserAbstractController';
 
 import { Request, Response, NextFunction } from 'express';
 
 export class UpdateUser extends UserAbstractController {
-  constructor(private userService: UserService) {
+  constructor(private userServiceUpdated: UpdateUserService) {
     super();
   }
 
@@ -12,7 +12,10 @@ export class UpdateUser extends UserAbstractController {
     try {
       const { id } = req.params;
       const userData = req.body;
-      const updatedUser = await this.userService.updateUser(id, userData);
+      const updatedUser = await this.userServiceUpdated.handleUSerService({
+        id,
+        userUdapted: userData,
+      });
       return res.status(200).json(updatedUser);
     } catch (error) {
       next(error);
