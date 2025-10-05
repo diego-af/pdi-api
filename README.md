@@ -51,7 +51,7 @@ src/
 
 ## Principais Tecnologias
 
-- Node.js
+- Node.js >= 22
 - TypeScript
 - Docker
 - Express

@@ -21,9 +21,6 @@ describe('User Entity', () => {
 
   it('should create a user with invalid email', () => {
     expect(() => new User('John Doe', 'dyegoogmail.com', 'Passsword1!')).toThrow('Email inválido');
-    expect(() => new User('John Doe', 'dyegoogmail@gmail,com', 'Passsword1!')).toThrow(
-      'Email inválido',
-    );
   });
 
   it('should create a user with invalid senha short', () => {

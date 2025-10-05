@@ -4,7 +4,7 @@ import { User } from './User.model';
 @Entity('tasks')
 export class Task {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   title: string;
@@ -14,6 +14,9 @@ export class Task {
 
   @Column({ default: false })
   completed: boolean;
+
+  @Column({ nullable: true })
+  userId: string;
 
   @ManyToOne(() => User, (user) => user.tasks)
   user: User;

@@ -34,8 +34,8 @@ export class UserRepositoryDatabase implements IUserRepository {
 
   async updateUser(id: string, user: Partial<IUserResponse>) {
     await this.useRepository.update(id, { name: user.name, email: user.email });
-    const user_id = id as unknown as number;
-    const updatedUser = await this.useRepository.findOneBy({ id: user_id });
+
+    const updatedUser = await this.useRepository.findOneBy({ id: id });
     return updatedUser;
   }
 
