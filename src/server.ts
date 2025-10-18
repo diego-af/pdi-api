@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import { router } from './routes';
 import { connectWithRetry } from './datasource';
@@ -15,6 +15,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
     res.status(err.statusCode).json({ error: err.message, success: err.successMessage });
     return;
   }
+  console.error(err?.message);
 
   res.status(500).json({ error: 'Internal Server Error' });
 });

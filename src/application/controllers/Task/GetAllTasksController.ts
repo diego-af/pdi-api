@@ -12,9 +12,11 @@ export class GetAllTasksController extends TaskControllerAbstract {
     try {
       const tasks = await this.taskService.handleTask({ userId: user_id });
 
+      
       if (tasks.length === 0) {
-        return res.status(204).json({
+        return res.status(201).json({
           message: 'Nenhuma tarefa encontrada',
+          tasks: [],
         });
       }
       return res.status(200).json({

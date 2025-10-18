@@ -34,6 +34,24 @@ export class TaskRepositoryDatabase implements ITaskRepository {
       },
     });
 
+
+
     return tasks;
+  }
+
+
+  async deleteTaskById(id: string, userId: string): Promise<void> {
+    await this.taskRepository.delete(id);
+  }
+
+  async updateTaskById(id: string, task: Partial<ITaskResponse>, userId:string): Promise<any> {
+    console.log(task, 'aqui')
+
+    const udaptedTask = await this.taskRepository.createQueryBuilder()
+      .update(Task)
+      .set({title: task.title, description: task.description, completed:task.completed})
+      .where("id = :id", { id }).andWhere("userId = :userId", { userId }).execute()
+
+    return udaptedTask
   }
 }

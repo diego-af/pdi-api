@@ -1,4 +1,4 @@
-import { NextFunction, Router, Request, Response } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 
 import {
   createUserController,
@@ -9,7 +9,13 @@ import {
 
 import { authController } from './application/controllers/Auth';
 import { IsAuthennticated } from './application/middlewares/AuthMiddleware';
-import { createTaskController, getallTaskController } from './application/controllers/Task';
+import {
+  createTaskController,
+  deleteTaskController,
+  getallTaskController,
+  updateTaskController,
+} from './application/controllers/Task';
+
 const router = Router();
 
 router.post('/users', (req: Request, res: Response, next: NextFunction) => {
@@ -45,5 +51,11 @@ router.get(
     getallTaskController.handleTask(req, res, next);
   },
 );
+
+
+router.delete("/delete-task/:id", (req: Request, res: Response, next: NextFunction) => deleteTaskController.handleTask(req, res, next))
+
+
+router.put("/update-task/:id", IsAuthennticated, (req: Request, res: Response, next: NextFunction) => updateTaskController.handleTask(req, res, next))
 
 export { router };
