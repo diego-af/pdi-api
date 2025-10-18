@@ -22,7 +22,7 @@ export class UpdateTaskController extends TaskControllerAbstract{
       const user_id = (req as any).user_id;
 
 
-      const uptadedTask = await this.updateTaskService.handleTask({id, task, userId: user_id})
+      await this.updateTaskService.handleTask({id, task, userId: user_id})
 
 
       return res.status(200).json({message: 'Tarefa atualizada com sucesso',})
