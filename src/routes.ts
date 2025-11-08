@@ -15,6 +15,7 @@ import {
   getallTaskController,
   updateTaskController,
 } from './application/controllers/Task';
+import { IsAuthenticatedPassport } from './application/passport/jwtStrategy';
 
 const router = Router();
 
@@ -22,15 +23,15 @@ router.post('/users', (req: Request, res: Response, next: NextFunction) => {
   createUserController.execute(req, res, next);
 });
 
-router.get('/users', IsAuthennticated, (req: Request, res: Response, next: NextFunction) => {
+router.get('/users', IsAuthenticatedPassport, (req: Request, res: Response, next: NextFunction) => {
   getAllUsersController.execute(req, res, next);
 });
 
-router.put('/users/:id', IsAuthennticated, (req: Request, res: Response, next: NextFunction) => {
+router.put('/users/:id', IsAuthenticatedPassport, (req: Request, res: Response, next: NextFunction) => {
   updateCOntrollerUser.execute(req, res, next);
 });
 
-router.delete('/users/:id', IsAuthennticated, (req: Request, res: Response, next: NextFunction) => {
+router.delete('/users/:id', IsAuthenticatedPassport, (req: Request, res: Response, next: NextFunction) => {
   deleteUserController.execute(req, res, next);
 });
 
@@ -40,13 +41,13 @@ router.post('/login', (req: Request, res: Response, next: NextFunction) => {
 
 //tasks
 
-router.post('/create-task', IsAuthennticated, (req: Request, res: Response, next: NextFunction) => {
+router.post('/create-task', IsAuthenticatedPassport, (req: Request, res: Response, next: NextFunction) => {
   createTaskController.handleTask(req, res, next);
 });
 
 router.get(
   '/get-all-tasks',
-  IsAuthennticated,
+  IsAuthenticatedPassport,
   (req: Request, res: Response, next: NextFunction) => {
     getallTaskController.handleTask(req, res, next);
   },

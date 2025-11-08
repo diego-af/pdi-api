@@ -4,6 +4,8 @@ import { router } from './routes';
 import { connectWithRetry } from './datasource';
 import { ErrorBoundary } from './ErrorClass/ErrorBoundary';
 
+import passport from './application/passport/jwtStrategy';
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -19,6 +21,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
 
   res.status(500).json({ error: 'Internal Server Error' });
 });
+app.use(passport.initialize());
 
 async function startServer() {
   try {

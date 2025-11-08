@@ -1,6 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 import { ErrorBoundary } from '../../ErrorClass/ErrorBoundary';
+
 
 interface Payload {
   sub: string;

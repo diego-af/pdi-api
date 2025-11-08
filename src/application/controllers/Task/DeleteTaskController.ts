@@ -10,7 +10,7 @@ export class DeleteController extends TaskControllerAbstract {
   async handleTask(req: any, res: any, next: any): Promise<any> {
     try{
       const { id } = req.params;
-      const user_id = (req as any).user_id;
+      const user_id = (req as any).user?.user_id;
 
       await this.deleteTaskService.handleTask({ id, userId: user_id });
 

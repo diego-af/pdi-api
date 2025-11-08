@@ -7,8 +7,8 @@ export class GetAllTasksController extends TaskControllerAbstract {
     super();
   }
   async handleTask(req: Request, res: Response, next: NextFunction) {
-    const user_id = (req as any).user_id;
-
+    const user_id = (req as any).user?.user_id;
+    
     try {
       const tasks = await this.taskService.handleTask({ userId: user_id });
 

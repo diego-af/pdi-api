@@ -19,7 +19,7 @@ export class UpdateTaskController extends TaskControllerAbstract{
       const task = {title, description, completed}
 
 
-      const user_id = (req as any).user_id;
+      const user_id = (req as any).user?.user_id;
 
 
       await this.updateTaskService.handleTask({id, task, userId: user_id})
