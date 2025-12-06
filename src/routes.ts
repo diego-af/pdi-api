@@ -27,13 +27,21 @@ router.get('/users', IsAuthenticatedPassport, (req: Request, res: Response, next
   getAllUsersController.execute(req, res, next);
 });
 
-router.put('/users/:id', IsAuthenticatedPassport, (req: Request, res: Response, next: NextFunction) => {
-  updateCOntrollerUser.execute(req, res, next);
-});
+router.put(
+  '/users/:id',
+  IsAuthenticatedPassport,
+  (req: Request, res: Response, next: NextFunction) => {
+    updateCOntrollerUser.execute(req, res, next);
+  },
+);
 
-router.delete('/users/:id', IsAuthenticatedPassport, (req: Request, res: Response, next: NextFunction) => {
-  deleteUserController.execute(req, res, next);
-});
+router.delete(
+  '/users/:id',
+  IsAuthenticatedPassport,
+  (req: Request, res: Response, next: NextFunction) => {
+    deleteUserController.execute(req, res, next);
+  },
+);
 
 router.post('/login', (req: Request, res: Response, next: NextFunction) => {
   authController.handleLogin(req, res, next);
@@ -41,9 +49,13 @@ router.post('/login', (req: Request, res: Response, next: NextFunction) => {
 
 //tasks
 
-router.post('/create-task', IsAuthenticatedPassport, (req: Request, res: Response, next: NextFunction) => {
-  createTaskController.handleTask(req, res, next);
-});
+router.post(
+  '/create-task',
+  IsAuthenticatedPassport,
+  (req: Request, res: Response, next: NextFunction) => {
+    createTaskController.handleTask(req, res, next);
+  },
+);
 
 router.get(
   '/get-all-tasks',
@@ -53,10 +65,15 @@ router.get(
   },
 );
 
+router.delete('/delete-task/:id', (req: Request, res: Response, next: NextFunction) =>
+  deleteTaskController.handleTask(req, res, next),
+);
 
-router.delete("/delete-task/:id", (req: Request, res: Response, next: NextFunction) => deleteTaskController.handleTask(req, res, next))
-
-
-router.put("/update-task/:id", IsAuthennticated, (req: Request, res: Response, next: NextFunction) => updateTaskController.handleTask(req, res, next))
+router.put(
+  '/update-task/:id',
+  IsAuthennticated,
+  (req: Request, res: Response, next: NextFunction) =>
+    updateTaskController.handleTask(req, res, next),
+);
 
 export { router };

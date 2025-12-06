@@ -4,6 +4,7 @@ export class BcryptHandler {
   async encryptpassword(password: string, saltRounds: number): Promise<string> {
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(password, salt);
+
     return hashedPassword;
   }
 

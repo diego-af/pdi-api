@@ -2,7 +2,6 @@ import { TaskServiceAbstract } from './TaskServiceAbstract';
 import { DeleteTaskUseCase } from '../../../domain/usecases/Task/DeleteTaskUseCase';
 
 export interface IDeleteTaskService {
-
   id: string;
   userId: string;
 }

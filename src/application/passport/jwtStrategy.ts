@@ -28,7 +28,6 @@ export default passport;
 
 export function IsAuthenticatedPassport(req: Request, res: Response, next: NextFunction) {
   return passport.authenticate('jwt', { session: false }, (err: any, user: any, info: any) => {
-    console.log(err, user, info);
     if (err) return res.status(500).json({ error: 'Authentication error' }).end();
     if (!user) return res.status(401).json({ error: info || 'Not authenticated' }).end();
 

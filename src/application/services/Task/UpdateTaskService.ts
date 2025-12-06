@@ -11,8 +11,6 @@ export class UpdateTaskService  extends TaskServiceAbstract<IUpdateTask>{
 
   async handleTask({id, task, userId}: IUpdateTask): Promise<any> {
 
-    console.log(task, "controller")
-
    const updatedTask = await this.updateTaskUseCase.handleTask({id, task, userId})
     return updatedTask;
   }
